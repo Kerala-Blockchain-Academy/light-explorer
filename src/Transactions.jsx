@@ -1,5 +1,6 @@
 import {useEffect,useState} from "react";
 import { Outlet ,Link,useLocation} from "react-router-dom";
+import styles from "./style/Home.module.css";
 
 function Transactions(props){
    const [isMounted, setIsMounted] = useState(false);
@@ -27,6 +28,7 @@ function Transactions(props){
    //  console.log ("Trans",transJSX)
    // setIsMounted(true)
    // }
+   
    for (var i = 0; i < length; i++) {
       const hash =  propsData.transactions[i].hash;
       console.log("Hash",hash);
@@ -34,16 +36,11 @@ function Transactions(props){
    
       console.log ("TransTrans",transJSX)
     return(
-        <div>
+        <div className={styles.transmytable}>
            <table>
-            <thead></thead>
+            <h1>Transaction Hash</h1>
             <tbody>
 
-           <tr>
-              <th>Transaction Hash</th>
-
-           </tr>
-           
            {transJSX.map((tlk) => {
             console.log("hello")
             console.log("TLK",tlk);
@@ -56,7 +53,6 @@ function Transactions(props){
             )
                })}
            
-        
            </tbody>
           </table>
         </div>

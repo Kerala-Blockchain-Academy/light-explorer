@@ -3,11 +3,11 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Highlight from "./Highlight";
 import RootLayout from "./RootLayout";
 import TransLayout from "./TransLayout";
-
 import Transactions from "./Transactions";
 import Transdetails from "./Transdetails";
 import ErrorPage from "./ErrorPage";
 import ErrorPage2 from "./ErrorPage2";
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<RootLayout />}>
@@ -18,8 +18,7 @@ const router = createBrowserRouter(
             <Route path="transactions" element={<Transactions />} />
             <Route path="transdetails/:tlk" element={<Transdetails />}/>
             <Route path="errorpage" element={<ErrorPage />}/>
-            <Route path="errorpage2" element={<ErrorPage2 />} />
-            
+            <Route path="errorpage2" element={<ErrorPage2 />} />   
         </Route>
     )
 )

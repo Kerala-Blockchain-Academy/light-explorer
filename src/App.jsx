@@ -10,7 +10,7 @@ function App(){
     <div>
         
    <Home />
-   <Highlight />
+   {/* <Highlight /> */}
    {/* <Table /> */}
    </div>
     );

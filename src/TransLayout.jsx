@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation,useParams } from "react-router-dom";
+import { Link,json,useParams } from "react-router-dom";
 import styles from "./style/Home.module.css";
 import { useNavigate  } from "react-router-dom";
-import { ContractUnknownEventPayload } from "ethers";
+
 function TransLayout() {
   
   const navigate = useNavigate();
   const { blk }  = useParams();
   
-  // console.log("hi")
-  // console.log(props);
-  // const [isMounted, setIsMounted] = useState(false);
-  // const location = useLocation();
-  // const { block } = location.state;
-  // console.log("hai")
-  // console.log(block);
-  // const blk = location.state;
-  // console.log("BLoccccck",blk);
-  
   var lblk;
   const [isMounted,setIsMounted] =useState(false);
   const [blockdetails, setblockdetails] = useState([]);
   const [transCount, settransCount] = useState();
+  const transJSX = [];
+  
   useEffect(() => { BlockD() }, []);
+
   async function BlockD() {
     const blk1 = Number(blk);
     console.log("BLK",blk1)
@@ -81,7 +74,6 @@ function TransLayout() {
     setblockdetails(blockData.result)
     console.log("BDDDD",blockdetails);
 
-
     let trans = await fetch("http://127.0.0.1:8545", {
       method: "POST",
       headers: {
@@ -96,17 +88,25 @@ function TransLayout() {
 
   }}
 
-  // console.log(blockdetails);
-  if (isMounted) {
-    console.log(blockdetails.transactions[0]);
-    const transac = blockdetails.transactions[0];
-    
-  }
 
-  // // const bata = blockdetails.transactions[0];
-  // // const batahash = bata.hash;
-  // // console.log(batahash);
-  // // console.log(bata[0].hash);
+
+  //////for geting trans from block details//////
+
+// console.log("check blockdetails", blockdetails)
+// console.log("check transactions", blockdetails.transactions[0]);
+// console.log("check transactions", blockdetails.transactions);
+const transactions =JSON.parse( JSON.stringify(blockdetails.transactions));
+console.log(transactions)
+
+
+// transactions.forEach(transaction => {
+//   console.log('Transaction Hash:', transaction.hash);
+//   console.log('From:', transaction.from);
+//   console.log('To:', transaction.to);
+//   // Access other transaction properties as needed
+// });
+
+
   console.log(transCount);
   const hexToDecimal = hex => parseInt(hex, 16);
   const timestamp = hexToDecimal(blockdetails.timestamp);
@@ -137,7 +137,9 @@ console.log("Time difference in days:", Math.floor(timeDifference / 86400));}
   const diffi = hexToDecimal(blockdetails.difficulty);
   const gasL = hexToDecimal(blockdetails.gasLimit);
   const totDiffi = hexToDecimal(blockdetails.totalDifficulty);
-  // // const length = blockdetails.transactions.length;
+  // const length = blockdetails.transactions.length;\
+  console.log("check length", length)
+
   // // console.log(tot);
   if(typeof blk1 === 'string'){
     
@@ -145,16 +147,16 @@ console.log("Time difference in days:", Math.floor(timeDifference / 86400));}
   }
   else{
 
-    console.log(typeof blk1);
+    // console.log("this is before return",typeof(blk1));
   return (
-    <div>
-      <h2>Block Details</h2>
-      <table className={styles.transmytable}>
-      {/* <tr><td><p>Block Height:</p></td><td>{blk}</td></tr> */}
+    <div className={styles.transmytable}>
+      <h1>Block Details</h1>
+      <table >
+      <tr><td><p>Block Height:</p></td><td>{blk}</td></tr>
       <tr><td><p>Block Hash:</p></td><td>{blockdetails.hash}</td></tr>
       <tr><td><p>Block timestamp:</p></td><td>{timeDifference}</td></tr>
       <tr><td><p>Transactions:</p></td><td><Link to="/Transactions" state={blockdetails}>{length} </Link>transactions</td></tr>
-      <tr><td><p>Size:</p></td><td>{size}bytes</td></tr> 
+      <tr><td><p>Size:</p></td><td>{size}bytes</td></tr>
       <tr><td><p>Difficulty:</p></td><td>{diffi}</td></tr> 
       <tr><td><p>Miner:</p></td><td>{blockdetails.miner}</td></tr> 
       <tr><td><p>Gas:</p></td><td>{gas} Wei</td></tr> 
@@ -167,7 +169,14 @@ console.log("Time difference in days:", Math.floor(timeDifference / 86400));}
       <tr><td><p>Sha3Uncles:</p> </td><td>{blockdetails.sha3Uncles}</td></tr>
       </table>
 
-     {/* <Link to="transactions">trr</Link> */}
+
+      <h1>Transaction Details</h1>
+      <table >
+      <tr><td><p>Transactions:</p></td><td><Link to="/Transactions" state={blockdetails}>{length} </Link>transactions</td></tr>
+      <tr><td><p>Size:</p></td><td>{size}bytes</td></tr>
+      <tr><td><p>Difficulty:</p></td><td>{diffi}</td></tr> 
+ 
+      </table>
 
     </div>
    )
