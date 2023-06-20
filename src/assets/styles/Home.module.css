@@ -7,55 +7,30 @@
 body {
 
   font: 1.2em "Fira Sans", serif;
-  /* background-image: linear-gradient(30deg, rgba(101, 158, 201, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(101, 158, 201, 0.2) 87.5%, rgba(101, 158, 201, 0.2)), linear-gradient(150deg, rgba(101, 158, 201, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(101, 158, 201, 0.2) 87.5%, rgba(101, 158, 201, 0.2)), linear-gradient(30deg, rgba(101, 158, 201, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(101, 158, 201, 0.2) 87.5%, rgba(101, 158, 201, 0.2)), linear-gradient(150deg, rgba(101, 158, 201, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(101, 158, 201, 0.2) 87.5%, rgba(101, 158, 201, 0.2)), linear-gradient(60deg, rgba(101, 158, 201, 0.1) 25%, transparent 25.5%, transparent 75%, rgba(101, 158, 201, 0.1) 75%, rgba(101, 158, 201, 0.1)), linear-gradient(60deg, rgba(101, 158, 201, 0.1) 25%, transparent 25.5%, transparent 75%, rgba(101, 158, 201, 0.1) 75%, rgba(101, 158, 201, 0.1));
-    background-size: 200px 350px;
-    background-position: 0 0, 0 0, 100px 175px, 100px 175px, 0 0, 100px 175px;
-    background-color: #e6f8fe; */
-
 
   /* background-color: #7a8e9f;
     background-image: url("https://etherscan.io/images/svg/waves-light.svg"); */
+    --s: 60px;
+    --c: #f4f5f7;
+    --_s: calc(2*var(--s)) calc(2*var(--s));
+    --_g: 35.36% 35.36% at;
+    --_c: #d1484800 66%,#ffffff 68% 70%,#fbfbfb2b 72%;
+    background: 
+      radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s), 
+      radial-gradient(var(--_g) 0 75%,var(--_c)) var(--s) var(--s)/var(--_s), 
+      radial-gradient(var(--_g) 100% 25%,var(--_c)) 0 0/var(--_s), 
+      radial-gradient(var(--_g) 0 75%,var(--_c)) 0 0/var(--_s), 
+      repeating-conic-gradient(var(--c) 0 25%,#0000 0 50%) 0 0/var(--_s), 
+      radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+    background-attachment: fixed;
 
-/* 
-  background:
-    radial-gradient(50% 50% at 100% 0, #e6f8fe 0% 5%, #659ec9 6% 15%, #e6f8fe 16% 25%, #659ec9 26% 35%, #e6f8fe 36% 45%,
-      #659ec9 46% 55%, #e6f8fe 56% 65%, #659ec9 66% 75%, #e6f8fe 76% 85%, #659ec9 86% 95%,
-      #0000 96%),
-    radial-gradient(50% 50% at 0 100%, #e6f8fe 0% 5%, #659ec9 6% 15%, #e6f8fe 16% 25%, #659ec9 26% 35%, #e6f8fe 36% 45%,
-      #659ec9 46% 55%, #e6f8fe 56% 65%, #659ec9 66% 75%, #e6f8fe 76% 85%, #659ec9 86% 95%,
-      #0000 96%),
-    radial-gradient(50% 50%, #e6f8fe 0% 5%, #659ec9 6% 15%, #e6f8fe 16% 25%, #659ec9 26% 35%, #e6f8fe 36% 45%,
-      #659ec9 46% 55%, #e6f8fe 56% 65%, #659ec9 66% 75%, #e6f8fe 76% 85%, #659ec9 86% 95%,
-      #0000 96%),
-    radial-gradient(50% 50%, #e6f8fe 0% 5%, #659ec9 6% 15%, #e6f8fe 16% 25%, #659ec9 26% 35%, #e6f8fe 36% 45%,
-      #659ec9 46% 55%, #e6f8fe 56% 65%, #659ec9 66% 75%, #e6f8fe 76% 85%, #659ec9 86% 95%,
-      #0000 96%) 100px 100px;
-  background-size: 200px 200px;
-  background-color: #e6f8fe; */
-
-
-
-/* 
-  --s: 50px;
-  --c: #191b22;
-  --_s: calc(2*var(--s)) calc(2*var(--s));
-  --_g: 35.36% 35.36% at;
-  --_c: #0000 66%,#20222a 68% 70%,#0000 72%;
-  background: 
-    radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s), 
-    radial-gradient(var(--_g) 0 75%,var(--_c)) var(--s) var(--s)/var(--_s), 
-    radial-gradient(var(--_g) 100% 25%,var(--_c)) 0 0/var(--_s), 
-    radial-gradient(var(--_g) 0 75%,var(--_c)) 0 0/var(--_s), 
-    repeating-conic-gradient(var(--c) 0 25%,#0000 0 50%) 0 0/var(--_s), 
-    radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
-  background-attachment: fixed; */
 }
 
 
 /* Navigation Bar */
 .nav {
   display: flex;
-  background-color: #2D4059;
+  background-color: #214151;
   height: 4em;
   position: relative;
   justify-content: center;
@@ -131,9 +106,9 @@ body {
   width: 60px;
   height: 45px;
   border: 2px solid #a4afbe;
-  background: #2D4059;
+  background: #214151;
   text-align: center;
-  color: #a4afbe;
+  color: #fafafa;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
 
@@ -159,7 +134,7 @@ body {
 .card_l {
   position: absolute;
   float: left;
-  background-color: #2D4059;
+  background-color: #214151;
   border-radius: 1.5em;
   min-width: 400px;
   max-width: 1170px;
@@ -190,7 +165,7 @@ body {
 .card_r {
   position: absolute;
   float: left;
-  background-color: #2D4059;
+  background-color: #214151;
   border-radius: 1.5em;
   min-width: 400px;
   max-width: 1170px;
@@ -275,7 +250,7 @@ body {
 }
 
 
-/* Block details page */
+/* Block/transaction details page */
 /* Table.css */
 
 .table_container{
@@ -300,7 +275,7 @@ th {
 }
 
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: #eeeeec;
 }
 
 /* Table.css */
