@@ -3,7 +3,6 @@ import React, { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
 
-
 const HeroSection = () => {
   const [blockdetails, setblockdetails] = useState([]);
   const [latestTrans, setLatestTrans] = useState([]);
@@ -52,18 +51,23 @@ const HeroSection = () => {
   };
 
   async function handleSearch() {
-    console.log(searchInput.length)
+
     if (searchInput.length === 64 || searchInput.length === 66) {
-      console.log("hai", searchInput);
       navigate('/transdetails/' + searchInput, { state: searchInput });
     }
+
     else {
       let hexStr = Number(searchInput).toString(16);
       hexStr = "0x" + hexStr
-      console.log(hexStr);
-
       navigate("/blockdetails/" + hexStr, { state: hexStr });
     }
+  }
+
+  function blockCard(){
+    navigate("/blockdetails/" + blockdetails.number);
+  }
+  function transCard(){
+    navigate("/transdetails/" + latestTrans.hash);
   }
 
   return (
@@ -93,7 +97,7 @@ const HeroSection = () => {
       {/* dashboard section */}
 
       <div className={styles.cards}>
-        <div className={styles.card_l}>
+        <div  onClick={blockCard} className={styles.card_l}>
           <h1>Latest Block Details</h1>
           <div className={styles.scroller}>
 
@@ -106,7 +110,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className={styles.card_r}>
+        <div onClick={transCard} className={styles.card_r}>
           <h1>Latest Transaction Details</h1>
           <div className={styles.scroller}>
             <span>
