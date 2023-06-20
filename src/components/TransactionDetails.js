@@ -1,24 +1,52 @@
 import styles from "../assets/styles/Home.module.css";
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 const TransDetails = () => {
-    const location = useLocation();
-    const state = location.state;
-    const tnsDetails = state.tnsState
+
+    const { tlk } = useParams();
+    const [transData, setTransData] = useState({});
+
+    useEffect(() => { TransD() }, []);
+
+    async function TransD() {
+        console.log("hash", tlk)
+        const data = {
+
+            "jsonrpc": "2.0",
+            "method": "eth_getTransactionByHash",
+            "params": [
+                tlk
+            ],
+            "id": 1
+        }
+        let transData1 = await fetch("http://127.0.0.1:8545", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        transData1 = await transData1.json();
+        setTransData(transData1.result);
+
+    }
+
 
     const navigate = useNavigate();
 
     const hexToDecimal = hex => parseInt(hex, 16);
-    const blockNumber = hexToDecimal(tnsDetails.blockNumber)
-    const chainId = hexToDecimal(tnsDetails.chainId)
-    const gas = hexToDecimal(tnsDetails.gas)
-    const gasPrice = hexToDecimal(tnsDetails.gasPrice)
-    const maxFee = hexToDecimal(tnsDetails.maxFeePerGas)
-    const maxPriority = hexToDecimal(tnsDetails.maxPriorityFeePerGas)
-    const value = hexToDecimal(tnsDetails.value)
+    const blockNumber = hexToDecimal(transData.blockNumber)
+    const chainId = hexToDecimal(transData.chainId)
+    const gas = hexToDecimal(transData.gas)
+    const gasPrice = hexToDecimal(transData.gasPrice)
+    const maxFee = hexToDecimal(transData.maxFeePerGas)
+    const maxPriority = hexToDecimal(transData.maxPriorityFeePerGas)
+    const value = hexToDecimal(transData.value)
+
 
     function backClick() {
-        navigate("/blockdetails/" + tnsDetails.blockNumber)
+        navigate("/blockdetails/" + transData.blockNumber)
     }
 
     return (
@@ -32,7 +60,7 @@ const TransDetails = () => {
                     <tbody>
                         <tr>
                             <td>Transaction Hash:</td>
-                            <td>{tnsDetails.hash}</td>
+                            <td>{transData.hash}</td>
                         </tr>
                         <tr>
                             <td>Block:</td>
@@ -44,11 +72,11 @@ const TransDetails = () => {
                         </tr>
                         <tr>
                             <td>From:</td>
-                            <td>{tnsDetails.from}</td>
+                            <td>{transData.from}</td>
                         </tr>
                         <tr>
                             <td>To:</td>
-                            <td>{tnsDetails.to} </td>
+                            <td>{transData.to} </td>
                         </tr>
                         <tr>
                             <td>Gas:</td>
@@ -72,20 +100,22 @@ const TransDetails = () => {
                         </tr>
                         <tr>
                             <td>v:</td>
-                            <td>{tnsDetails.v}</td>
+                            <td>{transData.v}</td>
                         </tr>
                         <tr>
                             <td> r:</td>
-                            <td>{tnsDetails.r}</td>
+                            <td>{transData.r}</td>
                         </tr>
                         <tr>
                             <td>s:</td>
-                            <td>{tnsDetails.s}</td>
+                            <td>{transData.s}</td>
                         </tr>
                         <tr>
                             <td>Input:</td>
-                            <td>
-                                <textarea id="json-text-area" rows="4" cols="50" name="input">{tnsDetails.input}</textarea></td>
+                            <td class={styles.data_cell}>
+                                <div>{transData.input}</div>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

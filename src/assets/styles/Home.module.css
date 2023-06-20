@@ -424,3 +424,26 @@ tr:hover {
   color: #3498DB;
   cursor: pointer;
 }
+
+
+/* input arae in transactions */
+.data_cell {
+  position: relative;
+}
+
+.data_cell > div {
+  display: inline-block;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  resize: both;
+  overflow: auto;
+  min-height: 40px;
+  min-width: 100px;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}

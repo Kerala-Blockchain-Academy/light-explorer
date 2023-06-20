@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/transdetails/:hash",
+        path: "/transdetails/:tlk",
         element: <TransDetails />
       },
 
