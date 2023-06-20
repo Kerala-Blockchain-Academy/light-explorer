@@ -10,7 +10,6 @@ const TransDetails = () => {
     useEffect(() => { TransD() }, []);
 
     async function TransD() {
-        console.log("hash", tlk)
         const data = {
 
             "jsonrpc": "2.0",
@@ -31,7 +30,6 @@ const TransDetails = () => {
         setTransData(transData1.result);
 
     }
-
 
     const navigate = useNavigate();
 

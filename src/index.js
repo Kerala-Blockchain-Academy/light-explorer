@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HeroSection /> },
 
@@ -26,10 +26,10 @@ const router = createBrowserRouter([
         element: <TransDetails />
       },
 
-      {
-        path: "/errorPage",
-        element: <ErrorPage />
-      },
+      // {
+      //   path: "/errorPage",
+      //   element: <ErrorPage />
+      // },
     ]
   }
 ]);

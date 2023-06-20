@@ -39,6 +39,7 @@ const BlockDetails = () => {
     const blkDec = hexToDecimal(latestBlk);
 
     if (blkNum > blkDec) {
+   
       navigate("/errorpage");
     }
     else {
