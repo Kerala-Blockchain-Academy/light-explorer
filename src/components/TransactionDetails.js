@@ -1,13 +1,15 @@
 import styles from "../assets/styles/Home.module.css";
 import {  useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-
+import Loader from "./Loader";
 
 const TransDetails = () => {
     const apiUrl = process.env.REACT_APP_API_URL;
-    const { tlk } = useParams();
+    const { thash } = useParams();
+    const navigate = useNavigate();
     const [transData, setTransData] = useState({});
-
+    const [loading, setLoading] = useState(true);
+    
     useEffect(() => {
         async function TransD() {
             const data = {
@@ -15,7 +17,7 @@ const TransDetails = () => {
                 "jsonrpc": "2.0",
                 "method": "eth_getTransactionByHash",
                 "params": [
-                    tlk
+                    thash
                 ],
                 "id": 1
             }
@@ -28,13 +30,12 @@ const TransDetails = () => {
             });
             transData1 = await transData1.json();
             setTransData(transData1.result);
+            setLoading(false)
         }
       
         TransD();
       }, []);
       
-
-    const navigate = useNavigate();
 
     const hexToDecimal = hex => parseInt(hex, 16);
     const blockNumber = hexToDecimal(transData.blockNumber)
@@ -50,6 +51,13 @@ const TransDetails = () => {
         navigate("/blockdetails/" + transData.blockNumber)
     }
     console.log("infinity loop check")
+
+if(loading){
+    return(
+        <Loader />
+    );
+}
+
     return (
         <>
             {/* back arrow */}
