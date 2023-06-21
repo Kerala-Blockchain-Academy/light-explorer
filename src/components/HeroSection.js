@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
 
+
 const HeroSection = () => {
   const [blockdetails, setblockdetails] = useState([]);
   const [latestTrans, setLatestTrans] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(true);
   const apiUrl = process.env.REACT_APP_API_URL;
-  
+
   const data = {
     "jsonrpc": "2.0",
     "method": "eth_getBlockByNumber",
@@ -36,6 +37,7 @@ const HeroSection = () => {
       setblockdetails(blockData.result);
       // setTransactions(blockData.result.transactions)
       setLatestTrans(blockData.result.transactions[0])
+      setLoading(false);
     }
 
     Genis();
@@ -45,12 +47,10 @@ const HeroSection = () => {
   const blockNumber = hexToDecimal(blockdetails.number)
   const blockSize = hexToDecimal(blockdetails.size)
 
-
   async function changeHandler(e) {
     setSearchInput(e.target.value);
   };
 
-  
   async function handleSearch() {
     if (/^(0x)?[0-9A-Fa-f]{64}$/.test(searchInput)) {
       navigate('/transdetails/' + searchInput, { state: searchInput });
@@ -62,7 +62,6 @@ const HeroSection = () => {
       navigate("/errorpage")
     }
   }
-  
 
   function blockCard() {
     navigate("/blockdetails/" + blockdetails.number);
@@ -70,8 +69,6 @@ const HeroSection = () => {
   function transCard() {
     navigate("/transdetails/" + latestTrans.hash);
   }
-
-  console.log("infinite loop check")
 
   return (
     <>
@@ -96,37 +93,38 @@ const HeroSection = () => {
         </div>
       </div>
 
-
       {/* dashboard section */}
 
       <div className={styles.cards}>
-        <div onClick={blockCard} className={styles.card_l}>
+        <div className={styles.card_l}>
           <h1>Latest Block Details</h1>
-          <div className={styles.scroller}>
-
-            <span>
-              Latest Block : {blockNumber}<br />
-              Block Hash : {blockdetails.hash ? blockdetails.hash.slice(0, 25):""}...<br />
-              Block size : {blockSize} bytes<br />
-            </span>
-
-          </div>
+          {!loading ? 
+            <div onClick={blockCard} className={styles.scroller}>
+              <span>
+                Latest Block : {blockNumber}<br />
+                Block Hash : {blockdetails.hash ? blockdetails.hash.slice(0, 25) : ""}...<br />
+                Block size : {blockSize} bytes<br />
+              </span>
+            </div>
+          : ""}
         </div>
-
-        <div onClick={transCard} className={styles.card_r}>
+ 
+        <div className={styles.card_r}>
           <h1>Latest Transaction Details</h1>
-          <div className={styles.scroller}>
-            <span>
-              Transaction Hash : {latestTrans.hash ? latestTrans.hash.slice(0, 20): ""}...<br />
-              From : {latestTrans.from ? latestTrans.from.slice(0,30):""}...<br />
-              To : {latestTrans.to ? latestTrans.to.slice(0,30):""}...<br />
-            </span>
-          </div>
+          {!loading ?
+            <div onClick={transCard} className={styles.scroller}>
+              <span>
+                Transaction Hash : {latestTrans.hash ? latestTrans.hash.slice(0, 20) : ""}...<br />
+                From : {latestTrans.from ? latestTrans.from.slice(0, 30) : ""}...<br />
+                To : {latestTrans.to ? latestTrans.to.slice(0, 30) : ""}...<br />
+              </span>
+            </div>
+          : ""}
         </div>
+
       </div>
     </>
-
-  )
+  );
 }
 
 export default HeroSection;
