@@ -1,6 +1,7 @@
 import styles from "../assets/styles/Home.module.css";
 import {  useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const TransDetails = () => {
 
@@ -19,7 +20,7 @@ const TransDetails = () => {
             ],
             "id": 1
         }
-        let transData1 = await fetch("http://127.0.0.1:8545", {
+        let transData1 = await fetch(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +47,7 @@ const TransDetails = () => {
     function backClick() {
         navigate("/blockdetails/" + transData.blockNumber)
     }
-
+    console.log("infinity loop check")
     return (
         <>
             {/* back arrow */}

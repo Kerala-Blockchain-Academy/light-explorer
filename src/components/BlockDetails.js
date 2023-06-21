@@ -54,7 +54,7 @@ const BlockDetails = () => {
           "id": 1
         };
   
-        let blockData = await fetch("http://127.0.0.1:8545", {
+        let blockData = await fetch(apiUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
