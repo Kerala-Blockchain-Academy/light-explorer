@@ -3,9 +3,9 @@ const Footer = () => {
     return (
   
         <div className={styles.footer}>
-            <h3>Powered by KBA</h3>
+            <h3>
+            <a className={styles.link_footer} href="https://kba.ai/">Powered by KBA</a></h3>
         </div>
-  
     )
   }
   

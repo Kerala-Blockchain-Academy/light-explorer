@@ -26,10 +26,6 @@ const router = createBrowserRouter([
         element: <TransDetails />
       },
 
-      // {
-      //   path: "/errorPage",
-      //   element: <ErrorPage />
-      // },
     ]
   }
 ]);

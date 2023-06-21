@@ -297,7 +297,6 @@ tr:hover {
 }
 
 
-
 /* footer - kba */
 .footer {
   position: sticky;
@@ -310,14 +309,12 @@ tr:hover {
 }
 
 
-
 .footer h3 {
   color: rgb(84, 149, 192);
-  font-size: 1em;
+  font-size: 0.9em;
   transition: 0.5s;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-
 }
 
 .footer h3:hover {
@@ -329,8 +326,20 @@ tr:hover {
     0 20px 30px rgba(0, 0, 0, 0.5);
 }
 
-.link{
+/* footer section always at bottom */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.link_footer{
   text-decoration: none;
+  color: inherit;
 }
 
 
@@ -415,7 +424,11 @@ tr:hover {
   resize: both;
   overflow: auto;
   min-height: 40px;
-  max-width: 40%;
+  max-width: 50%;
   line-height: 1.4;
   word-wrap: break-word;
+}
+
+.link{
+  text-decoration: none;
 }
