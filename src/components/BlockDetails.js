@@ -1,76 +1,95 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
-
+import Loader from "./Loader";
 
 const BlockDetails = () => {
 
   const navigate = useNavigate();
   const { blk } = useParams();
+  const [loading, setLoading] = useState(true);
+
   const blkNum = Number(blk);
   const [blockDetails, setBlockDetails] = useState([]);
   const [transDetails, setTransDetails] = useState([]);
   const transJSX = [];
 
   const apiUrl = process.env.REACT_APP_API_URL;
- 
+
+  // back button
+  function backClick() {
+    navigate("/")
+  }
 
   useEffect(() => {
     async function BlockD() {
-      const data1 = {
-        "jsonrpc": "2.0",
-        "method": "eth_blockNumber",
-        "params": [],
-        "id": 1
-      };
-  
-      let res = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data1),
-      })
-  
-      res = await res.json();
-  
-      const latestBlk = await res.result;
-      const hexToDecimal = hex => parseInt(hex, 16);
-      const blkDec = hexToDecimal(latestBlk);
-  
-      if (blkNum > blkDec) {
-     
-        navigate("/errorpage");
-      }
-      else {
-        const data = {
+
+      try {
+        const data1 = {
           "jsonrpc": "2.0",
-          "method": "eth_getBlockByNumber",
-          "params": [
-            blkNum,
-            true
-          ],
+          "method": "eth_blockNumber",
+          "params": [],
           "id": 1
         };
-  
-        let blockData = await fetch(apiUrl, {
+
+        let res = await fetch(apiUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
-        });
-  
-        blockData = await blockData.json();
-        setBlockDetails(blockData.result)
-        setTransDetails(blockData.result.transactions)
-  
-      };
+          body: JSON.stringify(data1),
+        })
+
+        res = await res.json();
+
+        const latestBlk = await res.result;
+        const hexToDecimal = hex => parseInt(hex, 16);
+        const blkDec = hexToDecimal(latestBlk);
+
+        if (blkNum > blkDec) {
+          navigate("/errorpage");
+        }
+        else {
+          const data = {
+            "jsonrpc": "2.0",
+            "method": "eth_getBlockByNumber",
+            "params": [
+              blk,
+              true
+            ],
+            "id": 1
+          };
+
+          let blockData = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          blockData = await blockData.json();
+
+          setBlockDetails(blockData.result)
+          setTransDetails(blockData.result.transactions)
+          setLoading(false);
+        }
+
+      } catch (error) {
+        console.log("An error occured while fetching from RPC url", error)
+        setLoading(false);
+      }
+
     }
-  
+
     BlockD();
   }, []);
 
+  if (loading) {
+    return (
+<Loader />
+    );
+  }
 
   // for getting transaction details
   for (var i = 0; i < transDetails.length; i++) {
@@ -80,6 +99,8 @@ const BlockDetails = () => {
   const hexToDecimal = hex => parseInt(hex, 16);
 
   const size = hexToDecimal(blockDetails.size);
+  console.log("sizeeee", blockDetails)
+
   const gas = hexToDecimal(blockDetails.gasUsed);
   const difficulty = hexToDecimal(blockDetails.difficulty);
   const gasLimit = hexToDecimal(blockDetails.gasLimit);
@@ -103,11 +124,7 @@ const BlockDetails = () => {
     timeDifference = Math.floor(timeDifference / 86400) + " " + "days ago";
   }
 
-// back button
-function backClick() {
-  navigate("/")
-}
-console.log("infinity loop check")
+  // console.log("infinite loop check")
 
   return (
     <>
@@ -127,7 +144,7 @@ console.log("infinity loop check")
               <td>{blockDetails.hash}</td>
             </tr>
             <tr>
-              <td>Block timestamp:</td>
+              <td>Timestamp:</td>
               <td>{timeDifference}</td>
             </tr>
             <tr>
@@ -182,7 +199,8 @@ console.log("infinity loop check")
           </tbody>
         </table>
 
-        {/* transactions */}
+     {/* transactions */}
+     {transJSX.length!==0 ?
         <div className={styles.table_container}>
           <h2>Transactions</h2>
           <table className={styles.table}>
@@ -195,22 +213,20 @@ console.log("infinity loop check")
               </tr>
             </thead>
 
-            {/* const transHash = latestTrans.hash ? latestTrans.hash.slice(0, 25) : ""; */}
-
             {transJSX.map((tns, index) => {
               return (
                 <tbody>
                   <tr>
                     <td>{index + 1}</td>
-                    <td><Link className={styles.link} to={'/transdetails/' + tns.hash} state={{ tnsState: tns }}>{tns.hash ? tns.hash.slice(0, 25): ""}...</Link> </td>
-                    <td>{tns.from ? tns.from.slice(0,25) : ""}...</td>
-                    <td>{tns.to ? tns.to.slice(0,25) : ""}...</td>
+                    <td><Link className={styles.link} to={'/transdetails/' + tns.hash} state={{ tnsState: tns }}>{tns.hash ? tns.hash.slice(0, 25) : ""}...</Link> </td>
+                    <td>{tns.from ? tns.from.slice(0, 25) : ""}...</td>
+                    <td>{tns.to ? tns.to.slice(0, 25) : ""}...</td>
                   </tr>
                 </tbody>
               );
             })}
           </table>
-        </div>
+        </div> : ""}
       </div>
     </>
   );
