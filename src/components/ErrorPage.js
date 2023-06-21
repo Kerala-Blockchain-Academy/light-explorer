@@ -11,8 +11,9 @@ const ErrorPage = () => {
         <div className={styles.errorPage}>
             <div className={styles.errorText}>
                 <h1>:(</h1>
-                <h2>A <span>404</span> error occured, Block/Hash not found.!!</h2>
-                <h3><a href="/">Return to home</a></h3>
+                <h2>A <span>404</span> error occured, Block or Transaction Hash not found.!!</h2>
+                <h3><a href="/">Return to home</a>&nbsp;|&nbsp;
+                <a href="javascript:history.back()">Go Back</a></h3>
             </div>
         </div>
     );
