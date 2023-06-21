@@ -50,18 +50,19 @@ const HeroSection = () => {
     setSearchInput(e.target.value);
   };
 
+  
   async function handleSearch() {
-
-    if (searchInput.length === 64 || searchInput.length === 66) {
+    if (/^(0x)?[0-9A-Fa-f]{64}$/.test(searchInput)) {
       navigate('/transdetails/' + searchInput, { state: searchInput });
-    }
-
-    else {
+    } else if (/^\d+$/.test(searchInput)) {
       let hexStr = Number(searchInput).toString(16);
-      hexStr = "0x" + hexStr
+      hexStr = "0x" + hexStr;
       navigate("/blockdetails/" + hexStr, { state: hexStr });
+    } else {
+      navigate("/errorpage")
     }
   }
+  
 
   function blockCard() {
     navigate("/blockdetails/" + blockdetails.number);
