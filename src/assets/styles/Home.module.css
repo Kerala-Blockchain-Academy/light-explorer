@@ -14,7 +14,7 @@ body {
     --c: #f4f5f7;
     --_s: calc(2*var(--s)) calc(2*var(--s));
     --_g: 35.36% 35.36% at;
-    --_c: #d1484800 66%,#ffffff 68% 70%,#fbfbfb2b 72%;
+    --_c: #f6f1f100 66%,#ffffff 68% 70%,#f1eaea0d 72%;
     background: 
       radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s), 
       radial-gradient(var(--_g) 0 75%,var(--_c)) var(--s) var(--s)/var(--_s), 
@@ -37,12 +37,11 @@ body {
 
 }
 
-
 /* Logo */
 .logo {
   display: flex;
   cursor: pointer;
-  position: relative;
+  position: sticky;
   top: 1em;
   height: 2.2em;
   width: 11em;
@@ -121,7 +120,7 @@ body {
 
 /*Resize the wrap to see the search bar change!*/
 .wrap {
-  width: 45%;
+  width: 45vw;
   position: relative;
   top: 8vw;
   left: 50vw;
@@ -137,14 +136,15 @@ body {
   background-color: #214151;
   border-radius: 1.5em;
   min-width: 400px;
-  max-width: 1170px;
+  max-width: 1100px;
   cursor: pointer;
   top: 45%;
   left: 29%;
   margin-top: 3%;
   transform: translate(-50%, -50%);
-  height: 8.5rem;
-  width: 36%;
+  height: 10rem;
+  width: 100%;
+  max-width: 580px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1),
     0 8px 8px rgba(0, 0, 0, 0.1),
     0 16px 16px rgba(0, 0, 0, 0.1),
@@ -159,7 +159,9 @@ body {
   justify-content: center;
   top: 10%;
   left: 30%;
-  font-size: 23px;
+  width: 500px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .card_r {
@@ -168,14 +170,15 @@ body {
   background-color: #214151;
   border-radius: 1.5em;
   min-width: 400px;
-  max-width: 1170px;
+  max-width: 1100px;
   cursor: pointer;
   top: 45%;
   left: 71%;
   margin-top: 3%;
   transform: translate(-50%, -50%);
-  height: 8.5rem;
-  width: 36%;
+  height: 10rem;
+  width: 100%;
+  max-width: 580px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1),
     0 8px 8px rgba(0, 0, 0, 0.1),
     0 16px 16px rgba(0, 0, 0, 0.1),
@@ -190,7 +193,8 @@ body {
   justify-content: center;
   top: 10%;
   left: 25%;
-  font-size: 23px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -200,7 +204,7 @@ body {
     float: none;
     width: auto;
     left: auto;
-    margin: 7% 4%;
+    margin: 7% 0;
     transform: none;
   }
 }
@@ -208,22 +212,23 @@ body {
 
 /* Scroller styling */
 .scroller {
-  height: 1.5em;
-  line-height:1.3em;
+  height: 1.7em;
+  line-height:1.5em;
   position: relative;
   overflow: hidden;
-  width: 75%;
-  top: 15%;
-  left: 12%;
+  width: 85%; 
+  top: 20%;
+  left: 7%;
 }
 
 .scroller>span {
   position: absolute;
   animation: slide 5s infinite;
   font-weight: normal;
-  font-size: 20px;
+  
+  font-size: 23px;
   font-family: cursive;
-  color: rgb(235, 208, 118);
+  color: rgb(241, 241, 235);
 }
 
 .scroller>span:hover {
@@ -254,13 +259,12 @@ body {
 /* Table.css */
 
 .table_container{
-margin: 3% 3%;
+margin: 3% 5%;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-
 }
 
 th, td {
@@ -270,17 +274,16 @@ th, td {
 }
 
 th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+  background-color: #eaeaea;
+  font-weight:500;
 }
 
 tr:hover {
-  background-color: #eeeeec;
+  background-color: #ccd0d0;
 }
 
 /* Table.css */
 
-/* Rest of the CSS rules */
 
 @media (max-width: 768px) {
   .table_container {
@@ -291,26 +294,22 @@ tr:hover {
     min-width: 100%;
   }
   
-  /* Adjust any other styles for smaller screens */
 }
-
-
-
-
-
 
 
 
 /* footer - kba */
 .footer {
-  display: flex;
-  cursor: pointer;
-  position: absolute;
-  bottom: 2%;
-  left: 45%;
-  justify-items: flex-start;
-  user-select: none;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+  padding: 5px;
+  text-align: center;
 }
+
+
 
 .footer h3 {
   color: rgb(84, 149, 192);
@@ -347,7 +346,7 @@ tr:hover {
   border-radius: 4px;
   transform: rotate(45deg);
   transition: 200ms ease-out;
-  left: 50px;
+  left: 80px;
   top: 22px;
   transform: rotate(225deg);
 }
@@ -416,7 +415,7 @@ tr:hover {
   resize: both;
   overflow: auto;
   min-height: 40px;
-  max-width: 60%;
+  max-width: 40%;
   line-height: 1.4;
   word-wrap: break-word;
 }
