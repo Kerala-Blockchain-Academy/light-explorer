@@ -7,7 +7,6 @@ const BlockDetails = () => {
 
   const navigate = useNavigate();
   const { blk } = useParams();
-  console.log("console 1", blk)
   const blkNum = Number(blk);
   const [blockDetails, setBlockDetails] = useState([]);
   const [transDetails, setTransDetails] = useState([]);
@@ -71,7 +70,6 @@ const BlockDetails = () => {
   
     BlockD();
   }, []);
-  
 
 
   // for getting transaction details
@@ -110,6 +108,7 @@ function backClick() {
   navigate("/")
 }
 console.log("infinity loop check")
+
   return (
     <>
 

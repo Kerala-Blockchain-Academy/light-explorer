@@ -5,11 +5,8 @@
 }
 
 body {
-
+background-color: #e9e8e8;
   font: 1.2em "Fira Sans", serif;
-
-  /* background-color: #7a8e9f;
-    background-image: url("https://etherscan.io/images/svg/waves-light.svg"); */
     --s: 60px;
     --c: #f4f5f7;
     --_s: calc(2*var(--s)) calc(2*var(--s));
@@ -30,7 +27,7 @@ body {
 /* Navigation Bar */
 .nav {
   display: flex;
-  background-color: #214151;
+  background-color: #04293A;
   height: 4em;
   position: relative;
   justify-content: center;
@@ -45,8 +42,6 @@ body {
   top: 1em;
   height: 2.2em;
   width: 11em;
-  /* background-color: #e8e9e9;
-  border-radius: 40px; */
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -86,26 +81,26 @@ body {
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #a4afbe;
+  border: 3px solid #718094;
   border-right: none;
   padding: 15px;
   height: 45px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #a2b1aa;
-
+  background-color: #e7e8e9;
+ 
 }
 
 .searchTerm:focus {
-  color: rgb(117, 126, 121);
+  color: rgb(248, 250, 246);
 
 }
 
 .searchButton {
   width: 60px;
   height: 45px;
-  border: 2px solid #a4afbe;
-  background: #214151;
+  border: 2px solid #4e6688;
+  background: #04293A;
   text-align: center;
   color: #fafafa;
   border-radius: 0 5px 5px 0;
@@ -133,7 +128,7 @@ body {
 .card_l {
   position: absolute;
   float: left;
-  background-color: #214151;
+  background-color: #04293A;
   border-radius: 1.5em;
   min-width: 400px;
   max-width: 1100px;
@@ -167,7 +162,7 @@ body {
 .card_r {
   position: absolute;
   float: left;
-  background-color: #214151;
+  background-color: #04293A;
   border-radius: 1.5em;
   min-width: 400px;
   max-width: 1100px;
@@ -310,7 +305,7 @@ tr:hover {
 
 
 .footer h3 {
-  color: rgb(84, 149, 192);
+  color: #0a4877;
   font-size: 0.9em;
   transition: 0.5s;
   font-family: Arial, Helvetica, sans-serif;
@@ -424,7 +419,7 @@ tr:hover {
   resize: both;
   overflow: auto;
   min-height: 40px;
-  max-width: 50%;
+  max-width: 500px;
   line-height: 1.4;
   word-wrap: break-word;
 }

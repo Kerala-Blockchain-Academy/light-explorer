@@ -1,36 +1,38 @@
 import styles from "../assets/styles/Home.module.css";
 import {  useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-const apiUrl = process.env.REACT_APP_API_URL;
+
 
 const TransDetails = () => {
-
+    const apiUrl = process.env.REACT_APP_API_URL;
     const { tlk } = useParams();
     const [transData, setTransData] = useState({});
 
-    useEffect(() => { TransD() }, []);
+    useEffect(() => {
+        async function TransD() {
+            const data = {
 
-    async function TransD() {
-        const data = {
-
-            "jsonrpc": "2.0",
-            "method": "eth_getTransactionByHash",
-            "params": [
-                tlk
-            ],
-            "id": 1
+                "jsonrpc": "2.0",
+                "method": "eth_getTransactionByHash",
+                "params": [
+                    tlk
+                ],
+                "id": 1
+            }
+            let transData1 = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+            transData1 = await transData1.json();
+            setTransData(transData1.result);
         }
-        let transData1 = await fetch(apiUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-        transData1 = await transData1.json();
-        setTransData(transData1.result);
-
-    }
+      
+        TransD();
+      }, []);
+      
 
     const navigate = useNavigate();
 
