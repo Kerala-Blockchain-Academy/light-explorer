@@ -13,67 +13,71 @@ const BlockDetails = () => {
   const [transDetails, setTransDetails] = useState([]);
   const transJSX = [];
 
-  useEffect(() => { BlockD() }, []);
+  const apiUrl = process.env.REACT_APP_API_URL;
+ 
 
-  async function BlockD() {
-
-    const data1 = {
-      "jsonrpc": "2.0",
-      "method": "eth_blockNumber",
-      "params": [],
-      "id": 1
-    };
-
-    let res = await fetch("http://127.0.0.1:8545", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data1),
-    })
-
-    res = await res.json();
-
-    const latestBlk = await res.result;
-    const hexToDecimal = hex => parseInt(hex, 16);
-    const blkDec = hexToDecimal(latestBlk);
-
-    if (blkNum > blkDec) {
-   
-      navigate("/errorpage");
-    }
-    else {
-      const data = {
+  useEffect(() => {
+    async function BlockD() {
+      const data1 = {
         "jsonrpc": "2.0",
-        "method": "eth_getBlockByNumber",
-        "params": [
-          blkNum,
-          true
-        ],
+        "method": "eth_blockNumber",
+        "params": [],
         "id": 1
       };
-
-      let blockData = await fetch("http://127.0.0.1:8545", {
+  
+      let res = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
-      });
-
-      blockData = await blockData.json();
-      setBlockDetails(blockData.result)
-      setTransDetails(blockData.result.transactions)
-
-    };
-  };
+        body: JSON.stringify(data1),
+      })
+  
+      res = await res.json();
+  
+      const latestBlk = await res.result;
+      const hexToDecimal = hex => parseInt(hex, 16);
+      const blkDec = hexToDecimal(latestBlk);
+  
+      if (blkNum > blkDec) {
+     
+        navigate("/errorpage");
+      }
+      else {
+        const data = {
+          "jsonrpc": "2.0",
+          "method": "eth_getBlockByNumber",
+          "params": [
+            blkNum,
+            true
+          ],
+          "id": 1
+        };
+  
+        let blockData = await fetch("http://127.0.0.1:8545", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+  
+        blockData = await blockData.json();
+        setBlockDetails(blockData.result)
+        setTransDetails(blockData.result.transactions)
+  
+      };
+    }
+  
+    BlockD();
+  }, []);
+  
 
 
   // for getting transaction details
   for (var i = 0; i < transDetails.length; i++) {
     transJSX.push(transDetails[i]);
   }
-  console.log("this is after for loop", transJSX)
 
   const hexToDecimal = hex => parseInt(hex, 16);
 
@@ -105,8 +109,7 @@ const BlockDetails = () => {
 function backClick() {
   navigate("/")
 }
-
-
+console.log("infinity loop check")
   return (
     <>
 
@@ -193,14 +196,16 @@ function backClick() {
               </tr>
             </thead>
 
+            {/* const transHash = latestTrans.hash ? latestTrans.hash.slice(0, 25) : ""; */}
+
             {transJSX.map((tns, index) => {
               return (
                 <tbody>
                   <tr>
                     <td>{index + 1}</td>
-                    <td><Link className={styles.link} to={'/transdetails/' + tns.hash} state={{ tnsState: tns }}>{tns.hash.slice(0, 25)}...</Link> </td>
-                    <td>{tns.from.slice(0, 25)}...</td>
-                    <td>{tns.to.slice(0, 25)}...</td>
+                    <td><Link className={styles.link} to={'/transdetails/' + tns.hash} state={{ tnsState: tns }}>{tns.hash ? tns.hash.slice(0, 25): ""}...</Link> </td>
+                    <td>{tns.from ? tns.from.slice(0,25) : ""}...</td>
+                    <td>{tns.to ? tns.to.slice(0,25) : ""}...</td>
                   </tr>
                 </tbody>
               );

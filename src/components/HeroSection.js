@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
 
@@ -9,6 +9,8 @@ const HeroSection = () => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+  
   const data = {
     "jsonrpc": "2.0",
     "method": "eth_getBlockByNumber",
@@ -19,31 +21,29 @@ const HeroSection = () => {
   };
 
   useEffect(() => {
+    async function Genis() {
+
+      let blockData = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      blockData = await blockData.json();
+
+      setblockdetails(blockData.result);
+      // setTransactions(blockData.result.transactions)
+      setLatestTrans(blockData.result.transactions[0])
+    }
+
     Genis();
-  });
-
-  const Genis = async () => {
-    const apiUrl = process.env.API_URL;
-
-    let blockData = await fetch("http://127.0.0.1:8545", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    blockData = await blockData.json();
-
-    setblockdetails(blockData.result);
-    // setTransactions(blockData.result.transactions)
-    setLatestTrans(blockData.result.transactions[0])
-  };
+  }, []);
 
   const hexToDecimal = hex => parseInt(hex, 16);
   const blockNumber = hexToDecimal(blockdetails.number)
   const blockSize = hexToDecimal(blockdetails.size)
-  // const latestTransHash = latestTrans.hash.slice(0,10)
 
 
   async function changeHandler(e) {
@@ -63,12 +63,14 @@ const HeroSection = () => {
     }
   }
 
-  function blockCard(){
+  function blockCard() {
     navigate("/blockdetails/" + blockdetails.number);
   }
-  function transCard(){
+  function transCard() {
     navigate("/transdetails/" + latestTrans.hash);
   }
+
+  console.log("infinite loop check")
 
   return (
     <>
@@ -97,13 +99,13 @@ const HeroSection = () => {
       {/* dashboard section */}
 
       <div className={styles.cards}>
-        <div  onClick={blockCard} className={styles.card_l}>
+        <div onClick={blockCard} className={styles.card_l}>
           <h1>Latest Block Details</h1>
           <div className={styles.scroller}>
 
             <span>
               Latest Block : {blockNumber}<br />
-              Block Hash : {blockdetails.hash}<br />
+              Block Hash : {blockdetails.hash ? blockdetails.hash.slice(0, 25):""}...<br />
               Block size : {blockSize} bytes<br />
             </span>
 
@@ -114,9 +116,9 @@ const HeroSection = () => {
           <h1>Latest Transaction Details</h1>
           <div className={styles.scroller}>
             <span>
-              Transaction Hash : {latestTrans.hash}<br />
-              From : {latestTrans.from}<br />
-              To : {latestTrans.to} bytes<br />
+              Transaction Hash : {latestTrans.hash ? latestTrans.hash.slice(0, 20): ""}...<br />
+              From : {latestTrans.from ? latestTrans.from.slice(0,30):""}...<br />
+              To : {latestTrans.to ? latestTrans.to.slice(0,30):""}...<br />
             </span>
           </div>
         </div>
