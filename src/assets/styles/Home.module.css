@@ -277,6 +277,11 @@ tr:hover {
   background-color: #ccd0d0;
 }
 
+/* Make subheadings bold */
+.table td:first-child {
+  font-weight: bold;
+  color: rgb(35, 31, 31);
+}
 /* Table.css */
 
 
@@ -416,16 +421,19 @@ tr:hover {
   padding: 14px 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  resize: both;
+  resize: horizontal;
   overflow: auto;
-  min-height: 40px;
-  max-width: 500px;
+  max-width: 550px;
+  max-height: 100px;
   line-height: 1.4;
   word-wrap: break-word;
+
 }
 
-.link{
-  text-decoration: none;
+@media (max-width: 768px) {
+  .data_cell > div {
+    max-width: 25%;
+  }
 }
 
 
@@ -489,4 +497,7 @@ tr:hover {
 }
 
 
-
+/* Link tag decoration */
+.link{
+  text-decoration: none;
+}
