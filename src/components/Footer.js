@@ -3,8 +3,8 @@ const Footer = () => {
     return (
   
         <div className={styles.footer}>
-            <h3>
-            <a className={styles.link_footer} href="https://kba.ai/">Powered by KBA</a></h3>
+            <p>
+            <a className={styles.link_footer} href="https://kba.ai/">Powered by KBA</a></p>
         </div>
     )
   }
