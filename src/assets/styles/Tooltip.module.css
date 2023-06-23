@@ -1,0 +1,28 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.question_mark {
+  margin-right: 15px;
+}
+
+.tooltip_text {
+  visibility: hidden;
+  background-color: #3f3f3f;
+  color: #fff;
+  border-radius: 6px;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  white-space:normal;
+  font-weight: 100;
+  font-size: 15px;
+  max-width: 400px;
+  min-width: 250px;
+}
+
+.tooltip:hover .tooltip_text {
+  visibility: visible;
+}
