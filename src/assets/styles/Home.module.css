@@ -113,9 +113,9 @@ background-color: #e9e8e8;
   height: 30px;
 }
 
-/*Resize the wrap to see the search bar change!*/
 .wrap {
   width: 45vw;
+  min-width:370px;
   position: relative;
   top: 8vw;
   left: 50vw;
@@ -157,6 +157,7 @@ background-color: #e9e8e8;
   font-size: 24px;
   font-weight: bold;
   user-select: none;
+ 
 }
 
 .card_r {
@@ -192,14 +193,34 @@ background-color: #e9e8e8;
   user-select: none;
 }
 
+
 @media (max-width: 768px) {
+  /* Styles for small screens */
   .card_l,
   .card_r {
     position: static;
-    float: none;
-    width: auto;
+    float:none;
+    width: 90%;
     left: auto;
-    margin: 7% 0;
+    margin: 8% auto;
+    transform: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1400px) {
+  /* Styles for medium screens and large screens*/
+  .card_l{
+    position: static;
+    float:none;
+    width: 100%;
+    margin:8% auto;
+    transform: none;
+  }
+  .card_r {
+    position: static;
+    float:none;
+    width: 100%;
+    margin: -6% auto;
     transform: none;
   }
 }
@@ -509,21 +530,26 @@ tr:hover {
   display: inline-block;
 }
 
-.tooltip .tooltip-text {
-  visibility: hidden;
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
+.question_mark {
+  margin-right: 15px;
 }
 
-.tooltip:hover .tooltip-text {
+.tooltip_text {
+  visibility: hidden;
+  background-color: #3f3f3f;
+  color: #fff;
+  border-radius: 6px;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  white-space:normal;
+  font-weight: 100;
+  font-size: 15px;
+  max-width: 400px;
+  min-width: 250px;
+}
+
+.tooltip:hover .tooltip_text {
   visibility: visible;
 }
