@@ -106,7 +106,7 @@ const BlockDetails = () => {
   const gas = hexToDecimal(blockDetails.gasUsed);
   const difficulty = hexToDecimal(blockDetails.difficulty);
   const gasLimit = hexToDecimal(blockDetails.gasLimit);
-  const baseFeePerGas = hexToDecimal(blockDetails.baseFeePerGas)
+  const baseFeePerGas = parseFloat((hexToDecimal(blockDetails.baseFeePerGas) * 10**-9).toFixed(10))
   const totDifficulty = hexToDecimal(blockDetails.totalDifficulty);
 
 
@@ -181,7 +181,7 @@ const BlockDetails = () => {
             </tr>
             <tr>
               <td>
-              <Tooltip text="Address receiving fees from transactions in this block"></Tooltip>
+              <Tooltip text="Address receiving fees from transactions in this block."></Tooltip>
               Miner:</td>
               <td>{blockDetails.miner}</td>
             </tr>
@@ -201,7 +201,8 @@ const BlockDetails = () => {
               <td>
               <Tooltip text="Post-London Upgrade, this represents the minimum gasUsed multiplier required for a tx to be included in a block. " />
               Base Fee Per Gas:</td>
-              <td>{baseFeePerGas} GWei</td>
+              {!isNaN(baseFeePerGas) ? 
+              <td>{baseFeePerGas} GWei</td> : <td>Not Available</td>}
             </tr>
             <tr>
               <td>
@@ -229,7 +230,7 @@ const BlockDetails = () => {
             </tr> */}
             <tr>
               <td>
-              <Tooltip text="The root of the state trie" />
+              <Tooltip text="The root of the state trie." />
               State Root:</td>
               <td>{blockDetails.stateRoot}</td>
             </tr>

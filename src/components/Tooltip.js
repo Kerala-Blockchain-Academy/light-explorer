@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../assets/styles/Tooltip.module.css';
+import styles from '../assets/styles/Home.module.css';
 
 const Tooltip = ({ text, children }) => {
   return (
