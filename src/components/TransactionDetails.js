@@ -42,9 +42,9 @@ const TransDetails = () => {
     const blockNumber = hexToDecimal(transData.blockNumber)
     const chainId = hexToDecimal(transData.chainId)
     const gas = hexToDecimal(transData.gas)
-    const gasPrice = parseFloat((hexToDecimal(transData.gasPrice) * 10**-9).toFixed(10))
-    const maxFee = hexToDecimal(transData.maxFeePerGas)
-    const maxPriority = hexToDecimal(transData.maxPriorityFeePerGas)
+    const gasPrice = parseFloat((hexToDecimal(transData.gasPrice) * 10**-9).toFixed(8))
+    const maxFee =  parseFloat((hexToDecimal(transData.maxFeePerGas) * 10**-9).toFixed(8))
+    const maxPriority =  parseFloat((hexToDecimal(transData.maxPriorityFeePerGas) * 10**-9).toFixed(8))
     const value = hexToDecimal(transData.value)
 
 
@@ -82,7 +82,7 @@ if(loading){
                         </tr>
                         <tr>
                             <td>
-                            <Tooltip text="this is tool tip" />
+                            <Tooltip text="It is a unique identifier for different Ethereum networks or chains. It is an integer value that distinguishes one network from another. " />
                                 ChainID:</td>
                             <td>{chainId}</td>
                         </tr>
@@ -112,15 +112,16 @@ if(loading){
                         </tr>
                         <tr>
                             <td>
-                            <Tooltip text="this is tool tip" />
+                            <Tooltip text="A parameter used in Ethereum transactions to set the maximum fee per unit of gas that a user is willing to pay for a transaction." />
                                 MaxFeePerGas:</td>
-                            <td>{maxFee} Wei</td>
+                            {maxFee ? <td>{maxFee} Gwei</td> : <td>Not Available</td>}
                         </tr>
                         <tr>
                             <td>
-                            <Tooltip text="this is tool tip" />
+                            <Tooltip text="This allows the sender to specify the maximum amount they are willing to pay as a priority fee per gas unit for their transaction" />
                                 MaxPriorityFeePerGas:</td>
-                            <td>{maxPriority} Wei</td>
+                            
+                            {maxPriority ? <td>{maxPriority} Gwei</td> : <td>Not Available</td>}
                         </tr>
                         <tr>
                             <td>
@@ -130,19 +131,19 @@ if(loading){
                         </tr>
                         <tr>
                             <td>
-                            <Tooltip text="this is tool tip" />
+                            <Tooltip text="ECDSA recovery id.It is a value used to recover the public key of the transaction signer from the signature." />
                                 v:</td>
                             <td>{transData.v}</td>
                         </tr>
                         <tr>
                             <td>
-                            <Tooltip text="this is tool tip" />
+                            <Tooltip text="ECDSA signature r. It represents a point on the elliptic curve." />
                                 r:</td>
                             <td>{transData.r}</td>
                         </tr>
                         <tr>
                             <td>
-                            <Tooltip text="this is tool tip" />
+                            <Tooltip text="ECDSA signature s.Similar to r, it represents another point on the elliptic curve." />
                                 s:</td>
                             <td>{transData.s}</td>
                         </tr>
