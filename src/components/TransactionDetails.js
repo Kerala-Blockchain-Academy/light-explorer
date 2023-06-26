@@ -51,8 +51,8 @@ const TransDetails = () => {
     function backClick() {
         navigate("/blockdetails/" + transData.blockNumber)
     }
-    console.log("infinity loop check")
 
+    
 if(loading){
     return(
         <Loader />

@@ -60,7 +60,7 @@ const BlockDetails = () => {
               true
             ],
             "id": 1
-          };
+          }
 
           let blockData = await fetch(apiUrl, {
             method: "POST",
@@ -121,10 +121,10 @@ const BlockDetails = () => {
     console.log("Time difference in minutes:", Math.floor(timeDifference / 60));
   }
   else if (timeDifference >= 3600 && timeDifference < 86400) {
-    timeDifference = Math.floor(timeDifference / 3600) + " " + " hours ago";
+    timeDifference = Math.floor(timeDifference / 3600) + " hours ago";
   }
   else {
-    timeDifference = Math.floor(timeDifference / 86400) + " " + " days ago";
+    timeDifference = Math.floor(timeDifference / 86400)  + " days ago";
   }
 
   // console.log("infinite loop check")
@@ -132,9 +132,6 @@ const BlockDetails = () => {
   return (
     <>
      
-
- 
-
       <div className={styles.arrow} onClick={backClick}></div>
       <div className={styles.table_container}>
         <table className={styles.table}>
