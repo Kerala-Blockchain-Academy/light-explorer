@@ -44,4 +44,5 @@ docker compose up -d
 
 * MetaMask Compatability
 * UI Updates
-
+* Mobile View
+* Production Release
