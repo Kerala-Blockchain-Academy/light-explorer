@@ -53,3 +53,6 @@ docker compose up -d
 * Mobile View
 * Production Release
 * Desktop App
+
+## 📜 License
+This project is licensed under the MIT license - see the [LICENSE.md](https://github.com/Kerala-Blockchain-Academy/light-explorer/blob/main/LICENSE) file for details.
