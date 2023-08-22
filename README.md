@@ -46,3 +46,4 @@ docker compose up -d
 * UI Updates
 * Mobile View
 * Production Release
+* Desktop App
