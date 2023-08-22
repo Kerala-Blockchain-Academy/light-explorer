@@ -11,6 +11,9 @@ Block Viewer is a streamlined blockchain explorer designed specifically for EVM 
 <a href="https://ethereum.org/en/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/Kerala-Blockchain-Academy/MediaVault/f822abfb1ca9f89c703822049ea417256798e1d5/assets/ethereum-colored.svg" width="36" height="36" alt="Ethereum" /></a>
 </div>
 
+## 📢 Prerequisites
+ - NodeJS 16.x
+
 ## ⚙️ Run Locally
 
 Clone the Project and change into the directory
