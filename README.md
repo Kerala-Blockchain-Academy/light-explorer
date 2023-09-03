@@ -57,5 +57,15 @@ docker compose up -d
 * Production Release
 * Desktop App
 
+## 🎗️ Contributing
+The open source community thrives on the contributions of its members, making it a remarkable space for learning, inspiration, and innovation. Every contribution you offer is **deeply valued**.  
+
+Should you have ideas to enhance this, kindly fork the repository and initiate a pull request. Alternatively, you can open an issue and tag it with **enhancement**. Remember to star the project! Many thanks!
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/<feature_name>`)
+3. Commit your Changes (`git commit -m '<feature_name>_added'`)
+4. Push to the Branch (`git push origin feature/<feature_name>`)
+5. Open a Pull Request
+
 ## 📜 License
 This project is licensed under the MIT license - see the [LICENSE.md](https://github.com/Kerala-Blockchain-Academy/light-explorer/blob/main/LICENSE) file for details.
