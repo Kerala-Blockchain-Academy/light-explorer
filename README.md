@@ -49,6 +49,9 @@ Now to run using docker execute the following command
 docker compose up -d
 ```
 
+## 🎞️ Demo
+[Demo](https://youtu.be/fXzQrl0F95Y?si=2bnAb7-vvfxxFwvM)
+
 ## 📦 Planned Updates
 
 * MetaMask Compatability
