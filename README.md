@@ -33,7 +33,7 @@ npm install
 ```
 
 To connect to any EVM-compatible blockchain network, update the **REACT_APP_API_URL** value in the **.env** file.
-https://github.com/Kerala-Blockchain-Academy/light-explorer/blob/a106f6ae339bbc1b967961bd7f9336fc06f8eab2/.env#L1
+https://github.com/Kerala-Blockchain-Academy/light-explorer/blob/b7c09be0631f931fbf6541080d2ac2a5e2756489/.env#L1
 
 Run the application
 
