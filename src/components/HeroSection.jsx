@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 const HeroSection = () => {
@@ -10,7 +10,7 @@ const HeroSection = () => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const apiUrl = process.env.REACT_APP_API_URL;
+  // const apiUrl = process.env.REACT_APP_API_URL;
 
   const data = {
     "jsonrpc": "2.0",
@@ -72,7 +72,7 @@ const HeroSection = () => {
 
   return (
     <>
-      {/* seerch bar */}
+      {/* search bar */}
 
       <div className={styles.wrap}>
         <div className={styles.search}>

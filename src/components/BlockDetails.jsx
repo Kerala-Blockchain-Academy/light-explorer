@@ -3,6 +3,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
 import Loader from "./Loader";
 import Tooltip from "./Tooltip";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const BlockDetails = () => {
 
@@ -16,7 +18,7 @@ const BlockDetails = () => {
   const [transDetails, setTransDetails] = useState([]);
   const transJSX = [];
 
-  const apiUrl = process.env.REACT_APP_API_URL;
+  // const apiUrl = process.env.REACT_APP_API_URL;
 
   // back button
   function backClick() {
