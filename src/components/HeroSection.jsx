@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 import styles from "../assets/styles/Home.module.css";
 const apiUrl = import.meta.env.VITE_API_URL;
 
+const HeroSection = (props) => {
+  const { someObject } = props;
 
-const HeroSection = () => {
+  // Ensure someObject is defined before accessing its properties
+  const hash = someObject ? someObject.hash : null;
+
   const [blockdetails, setblockdetails] = useState([]);
   const [latestTrans, setLatestTrans] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -34,6 +38,8 @@ const HeroSection = () => {
 
       blockData = await blockData.json();
 
+      console.log(blockData)
+
       setblockdetails(blockData.result);
       // setTransactions(blockData.result.transactions)
       setLatestTrans(blockData.result.transactions[0])
@@ -44,8 +50,8 @@ const HeroSection = () => {
   }, []);
 
   const hexToDecimal = hex => parseInt(hex, 16);
-  const blockNumber = hexToDecimal(blockdetails.number)
-  const blockSize = hexToDecimal(blockdetails.size)
+  const blockNumber = blockdetails ? hexToDecimal(blockdetails.number) : null;
+  const blockSize = blockdetails ? hexToDecimal(blockdetails.size) : null;
 
   async function changeHandler(e) {
     setSearchInput(e.target.value);
@@ -98,7 +104,7 @@ const HeroSection = () => {
       <div className={styles.cards}>
         <div className={styles.card_l}>
           <h1>Latest Block Details</h1>
-          {!loading ? 
+          {!loading && blockdetails ? 
             <div onClick={blockCard} className={styles.scroller}>
               <span>
                 Latest Block : {blockNumber}<br />
@@ -111,7 +117,7 @@ const HeroSection = () => {
  
         <div className={styles.card_r}>
           <h1>Latest Transaction Details</h1>
-          {!loading ?
+          {!loading && latestTrans ?
             <div onClick={transCard} className={styles.scroller}>
               <span>
                 Transaction Hash : {latestTrans.hash ? latestTrans.hash.slice(0, 20) : ""}...<br />
@@ -123,6 +129,8 @@ const HeroSection = () => {
         </div>
 
       </div>
+      {/* Use hash safely */}
+      {hash && <p>Hash: {hash}</p>}
     </>
   );
 }
