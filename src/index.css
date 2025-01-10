@@ -319,50 +319,33 @@ tr:hover {
 
 
 /* footer - kba */
-/* Footer Styling */
 .footer {
   position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #04293A; /* Dark theme for a professional look */
-  color: #ffffff;
-  padding: 5px 10px;
+  background-color: #f1f1f1;
+  padding: 5px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-family: 'Arial', sans-serif;
-  font-size: 0.9em;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
+
 
 .footer p {
-  margin: 0;
-  font-size: 1em;
-}
-
-.footer a {
-  color: #4eabf8;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer a:hover {
-  color: #79c2f2;
-}
-
-.footer .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.footer .footer-links a {
+  color: #0a4877;
+  font-size: 0.9em;
+  transition: 0.5s;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
 
+.footer p:hover {
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+    0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 #ccc,
+    0 7px 0 #ccc, 0 8px 0 #ccc,
 
+    0 20px 30px rgba(0, 0, 0, 0.5);
+}
 
 /* footer section always at bottom */
 .app {
@@ -407,94 +390,43 @@ tr:hover {
 /* error page */
 
 .errorPage {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #3498db, #1abc9c);
+  background: #3498DB;
   color: #fff;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  overflow: hidden;
 }
 
-.errorText {
-  max-width: 500px;
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+.errorText{
+  margin-top: -15%;
+  padding: 0;
+ 
 }
 
-.errorImage {
-  max-width: 200px;
-  margin-bottom: 20px;
-  animation: float 3s ease-in-out infinite;
+.errorPage h1 {
+  font-size: 30vh;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+.errorPage h2 span {
+  font-size: 4rem;
+  font-weight: 600;
 }
 
-h1 {
-  font-size: 6rem;
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-p {
-  margin-bottom: 20px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
-
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  color: #fff;
-  background: #09725d;
+.errorPage a:link,
+.errorPage a:visited {
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  background: #22f361;
-  transform: translateY(-2px);
-}
-
-.btnOutline {
-  padding: 10px 20px;
-  border: 2px solid #fff;
-  border-radius: 25px;
-  background: transparent;
   color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.btnOutline:hover {
+.errorPage h3 a:hover {
+  text-decoration: none;
   background: #fff;
-  color: #1abc9c;
+  color: #3498DB;
+  cursor: pointer;
 }
 
 

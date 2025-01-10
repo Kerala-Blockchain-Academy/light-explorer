@@ -1,20 +1,23 @@
-# Use an official Node runtime as a parent image
-FROM node:14
+# Base image
+FROM node:20
 
-# Set the working directory to /app
+# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to /app
-COPY package*.json ./
+# Install pnpm globally
+RUN npm install -g pnpm
 
-# Install app dependencies
-RUN npm install
+# Copy package.json and pnpm-lock.yaml
+COPY package.json pnpm-lock.yaml ./
 
-# Copy the current directory contents into the container at /app
+# Install app dependencies using pnpm
+RUN pnpm install
+
+# Copy the rest of the app's code
 COPY . .
 
-# Make port 3000 available to the world outside this container
+# Expose the application port
 EXPOSE 3000
 
-# Define the command to run your app
-CMD ["npm", "start"]
+# Command to start the app
+CMD ["pnpm", "start"]

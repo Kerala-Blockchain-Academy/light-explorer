@@ -3,9 +3,11 @@ import {  useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Tooltip from "./Tooltip";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const TransDetails = () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
+    // const apiUrl = process.env.REACT_APP_API_URL;
     const { thash } = useParams();
     const navigate = useNavigate();
     const [transData, setTransData] = useState({});
